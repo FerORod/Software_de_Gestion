@@ -5,7 +5,6 @@ import {v4 as uuid} from 'uuid';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { create } from 'domain';
 
 @Injectable()
 export class ProductsService {
