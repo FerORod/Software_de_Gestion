@@ -29,8 +29,7 @@ export class ProductsService {
   }
 
   findByProvider(id: string) {
-    // const providerFounded = this.productRepository.find({ where: { provider: id } });
-    // return providerFounded;
+    return this.productRepository.findBy({ provider: {providerId: id}})
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
