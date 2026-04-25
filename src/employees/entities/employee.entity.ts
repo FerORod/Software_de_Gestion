@@ -1,17 +1,24 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
+import { Location } from 'src/locations/entities/location.entity';
 @Entity()
 
 export class Employee {
     @PrimaryGeneratedColumn('uuid')
-        employeeId?: string
+    employeeId?: string
     @Column({type: 'text' })
-        name?: string
+    name?: string
     @Column({type: 'text'})
-        lastName?: string
+    lastName?: string
     @Column({type: 'text'})
-        phoneNumber?: string
+    phoneNumber?: string
     @Column({type: 'text'})
-        email?: string
+    email?: string
     @Column({type: 'text', nullable: true})
-        photoUrl?: string
+    photoUrl?: string
+
+    @OneToMany(() => Location, (location) => location.employees)
+    @JoinColumn({
+        name: "LocationId"
+    })
+    Location?: Location;
 }
