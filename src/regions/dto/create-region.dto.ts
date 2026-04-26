@@ -1,7 +1,6 @@
-import { Region } from '../entities/region.entity';
 import { IsArray, IsString, MaxLength } from 'class-validator';
 
-export class CreateRegionDto extends Region {
+export class CreateRegionDto {
     @IsString()
     @MaxLength(100)
     declare regionName?: string;

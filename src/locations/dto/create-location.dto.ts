@@ -1,7 +1,6 @@
 import { ArrayNotEmpty, IsArray, IsString, Max, MaxLength } from 'class-validator';
-import { Location } from '../entities/location.entity';
 
-export class CreateLocationDto extends Location {
+export class CreateLocationDto {
     @IsString()
     @MaxLength(35)
     declare locationName: string;
