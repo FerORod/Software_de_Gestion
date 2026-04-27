@@ -7,5 +7,5 @@ export class User {
     @Column('text')
     userEmail!: string
     @Column('text')
-    userPassword?: string
+    userPassword!: string
 }
