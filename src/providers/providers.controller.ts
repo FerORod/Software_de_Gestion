@@ -6,6 +6,8 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { User } from 'src/auth/entities/user.entity';
 import { UserData } from 'src/auth/decorators/user.decorator';
 import { UnauthorizedException } from '@nestjs/common';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Controller('providers')
 @UseGuards(AuthGuard)
@@ -17,6 +19,8 @@ export class ProvidersController {
     return this.providersService.create(createProviderDto);
   }
 
+  @Roles(['Admin'])
+  @UseGuards(RolesGuard)
   @Get()
   findAll(@UserData() user:User) {
     // console.log(user);
