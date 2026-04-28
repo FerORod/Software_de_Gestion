@@ -1,5 +1,6 @@
+import { User } from "src/auth/entities/user.entity";
 import { Product } from "src/products/entities/product.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Provider {
@@ -13,4 +14,10 @@ export class Provider {
         providerPhoneNumber?: string;
     @OneToMany(() => Product, (product) => product.provider)
     products?: Product[];
+
+    @OneToOne(() => User)
+    @JoinColumn({
+        name: 'UserId'
+    })
+    user?: User
 }
