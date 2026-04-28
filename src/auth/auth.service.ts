@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -40,4 +40,13 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
     return token;
   }
+
+  async updateUserRoles( userEmail: string, updateUserDto: UpdateUserDto){
+    const newUserData = await this.userRepository.preload({
+      userEmail: userEmail,
+      ...updateUserDto})
+      if(!newUserData)throw new NotFoundException('Usuario no encontrado');
+      this.userRepository.save(newUserData);
+      return newUserData;
+    }
 }
