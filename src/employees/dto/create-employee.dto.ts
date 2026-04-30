@@ -3,14 +3,14 @@ import { IsEmail, IsString, MaxLength } from "class-validator";
 export class CreateEmployeeDto {
     @IsString()
     @MaxLength(50)
-    name?: string;
+    employeeName?: string;
     @IsString()
     @MaxLength(50)
-    lastName?: string;
+    employeeLastName?: string;
     @IsString()
     @MaxLength(10)
-    phoneNumber?: string;
+    employeePhoneNumber?: string;
     @IsString()
     @IsEmail()
-    email?: string;
+    employeeEmail?: string;
 }
